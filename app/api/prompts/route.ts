@@ -31,9 +31,14 @@ export async function POST(request: NextRequest) {
         const json = await response.json();
         const message = json.choices[0].message;
 
-        const insertPromptResponse = await db.insert(prompts).values({ body }).returning();
+        const insertPromptResponse = await db
+            .insert(prompts)
+            .values({ body, createdAt: new Date().toISOString() })
+            .returning();
         const prompt = insertPromptResponse[0]
-        await db.insert(responses).values({ body, promptId: prompt.id }).returning();
+        await db.insert(responses)
+            .values({ body, promptId: prompt.id, createdAt: new Date().toISOString() })
+            .returning();
         return new NextResponse(JSON.stringify({ prompt, response: message.content }));
     } catch (error) {
         return new NextResponse(JSON.stringify({ error }), { status: 400 });

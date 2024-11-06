@@ -1,9 +1,9 @@
 import db from "@/db";
 import { eq } from "drizzle-orm";
 import { prompts, responses } from "@/db/schema";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(_request: Request, { params, }: { params: Promise<{ id: string }> }) {
+export async function GET(_request: NextRequest, { params, }: { params: Promise<{ id: string }> }) {
     const { id } = await params
     try {
         const selectResponse = await db.select().from(prompts).where(eq(prompts.id, Number(id)))
@@ -17,7 +17,7 @@ export async function GET(_request: Request, { params, }: { params: Promise<{ id
     }
 }
 
-export async function PUT(request: Request, { params, }: { params: Promise<{ id: string }> }) {
+export async function PUT(request: NextRequest, { params, }: { params: Promise<{ id: string }> }) {
     const { id } = await params;
     const { body } = await request.json();
     if (!body || !id) {
