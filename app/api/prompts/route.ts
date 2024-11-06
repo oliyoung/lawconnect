@@ -37,7 +37,11 @@ export async function POST(request: NextRequest) {
             .returning();
         const prompt = insertPromptResponse[0]
         await db.insert(responses)
-            .values({ body, promptId: prompt.id, createdAt: new Date().toISOString() })
+            .values({
+                body: message.content,
+                promptId: prompt.id,
+                createdAt: new Date().toISOString()
+            })
             .returning();
         return new NextResponse(JSON.stringify({ prompt, response: message.content }));
     } catch (error) {

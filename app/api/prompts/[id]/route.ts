@@ -11,7 +11,7 @@ export async function GET(_request: NextRequest, { params, }: { params: Promise<
         const prompt = selectResponse[0];
 
         const responsesResponse = await db.select().from(responses).where(eq(responses.promptId, Number(id)))
-        return new NextResponse(JSON.stringify({ prompt, responses: responsesResponse.map(r => r.body) }));
+        return new NextResponse(JSON.stringify({ ...prompt, responses: responsesResponse.map(r => r.body) }));
     } catch (error) {
         return new NextResponse(JSON.stringify({ error }), { status: 400 });
     }
