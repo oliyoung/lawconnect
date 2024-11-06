@@ -2,6 +2,10 @@ GET http://localhost:3000/api/prompts
 
 ###
 
+GET http://localhost:3000/api/prompts/7
+
+###
+
 POST http://localhost:3000/api/prompts
 content-type: application/json
 
