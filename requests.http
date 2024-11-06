@@ -1,14 +1,16 @@
-GET http://localhost:3000/api/prompts
-
-###
-
-GET http://localhost:3000/api/prompts/7
-###
-
-GET http://localhost:3000/api/prompts/7/responses
-###
-
 POST http://localhost:3000/api/prompts
 content-type: application/json
 
 { "body": "I am an accountant, and my client is asking for advice on strategies to optimise his tax structure. He and his partner have an income of $200,000 per year. They live in Sydney, Australia, and have no kids. Please provide a detailed list of strategies that could minimise their tax. Please be very specific and use concise language." }
+###
+
+GET http://localhost:3000/api/prompts
+
+###
+
+GET http://localhost:3000/api/prompts/1
+###
+
+GET http://localhost:3000/api/prompts/1/responses
+###
+
