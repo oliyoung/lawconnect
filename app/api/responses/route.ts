@@ -1,8 +1,8 @@
 "use server";
 import { eq } from "drizzle-orm";
-import db from "@/app/db";
+import db from "@/db";
 
-import { responses } from "@/app/db/schema";
+import { responses } from "@/db/schema";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {

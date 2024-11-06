@@ -1,8 +1,8 @@
 "use server";
 
-import db from "@/app/db";
+import db from "@/db";
 import { eq } from "drizzle-orm";
-import { prompts, responses } from "@/app/db/schema";
+import { prompts, responses } from "@/db/schema";
 import { NextRequest, NextResponse } from "next/server";
 import client from "@/lib/openai";
 
