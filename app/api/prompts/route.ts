@@ -4,6 +4,8 @@ import db from "@/app/db";
 import { eq } from "drizzle-orm";
 import { prompts, responses } from "@/app/db/schema";
 import { NextRequest, NextResponse } from "next/server";
+import OpenAI from 'openai';
+import client from "@/lib/openai";
 
 export async function GET(request: NextRequest) {
     const promptId = request.nextUrl.searchParams.get("promptId");
@@ -26,8 +28,12 @@ export async function POST(request: NextRequest) {
     }
 
     try {
-        const insertResponse = await db.insert(prompts).values({ body }).returning();
-        return new NextResponse(JSON.stringify(insertResponse), { status: 201, });
+        await db.insert(prompts).values({ body }).returning();
+        const response = await client.chat.completions.create({
+            model: 'gpt-4o',
+            messages: [{ role: 'user', content: body },]
+        }).asResponse();
+        return new NextResponse(await response.json());
     } catch (error) {
         return new NextResponse(JSON.stringify({ error }), { status: 400 });
     }
