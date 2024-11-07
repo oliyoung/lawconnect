@@ -4,6 +4,7 @@ import useGetPrompt from "@/lib/hooks/useGetPrompt";
 import { Prompt } from "@/types";
 import { Box, Flex, Spinner, Text } from "@radix-ui/themes";
 import { Suspense } from "react";
+import Markdown from 'react-markdown'
 
 interface PromptResponses {
     id: Prompt['id']
@@ -24,10 +25,11 @@ export default function PromptResponses({ id }: PromptResponses) {
                     <Text>{data.body}</Text>
                     <Text className="block text-xs text-slate-500">{new Date(data.createdAt).toLocaleTimeString()}</Text>
                 </Box>
-                {data.responses.map((r, index) => <Box key={index}>
-                    <Text className='bg-slate-50  rounded block p-8'>{r}</Text>
+                {data.responses.map((body, index) => <Box key={index}>
+                    <Text className='prompt-response'>
+                        <Markdown>{body}</Markdown>
+                    </Text>
                 </Box>)}
-
             </Flex>
         </Box>
     </Suspense>
