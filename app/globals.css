@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -23,7 +22,7 @@ body {
 
 
 .box {
-  @apply flex flex-col bg-white shadow rounded;
+  @apply flex flex-col bg-white shadow rounded border border-slate-200;
 }
 
 .box .box-header {
@@ -36,4 +35,16 @@ body {
 
 .box .box-content {
   @apply px-4 py-5 sm:p-6;
+}
+
+.prompt-response {
+  @apply bg-slate-50 ml-8 rounded block p-8 leading-6;
+}
+
+.prompt-response * {
+  @apply leading-6 mb-2;
+}
+
+.prompt-response li {
+  @apply ml-4 mb-4;
 }

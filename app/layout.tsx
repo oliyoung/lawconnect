@@ -13,7 +13,7 @@ export default function RootLayout({ children, }: Readonly<{ children: React.Rea
     <html lang="en">
       <body className="antialiased ">
         <Theme>
-          <div className="container border p-8 mx-auto">
+          <div className="container p-8 mx-auto">
             {children}
           </div>
         </Theme>
